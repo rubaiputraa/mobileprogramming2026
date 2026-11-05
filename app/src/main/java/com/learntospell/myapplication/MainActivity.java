@@ -1,5 +1,6 @@
 package com.learntospell.myapplication;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private OpsiAdapter adapter;
     private TextView textHasil;
     private String soal;
+    private int JUMLAH_SOAL = 10;
+    private int soalke = 0;
     private ArrayList<String> opsiJawaban;
     private static final String TAG_LC = "Lifecycle";
     private TextView textSkor;
@@ -137,6 +141,41 @@ public class MainActivity extends AppCompatActivity {
         letsPlay();
     }
 
+    private String kodeLevel() {
+        int id = radioGroupLevel.getCheckedRadioButtonId();
+        if (id == R.id.radioEasy) return "Easy";
+        if (id == R.id.radioMedium) return "Medium";
+        return "Hard";
+    }
+
+    private void mulaiSesiBaru() {
+        soalke = 0;
+        skorBenar = 0;
+        skorSalah = 0;
+        letsPlay();
+    }
+
+    private void selesaiSesi() {
+        hentikanTimer();
+        sudahDijawab = true;
+        tampilkanRingkasan();
+    }
+
+    private void tampilkanRingkasan () {
+        int nilai = skorBenar * 100 / JUMLAH_SOAL;
+        new AlertDialog.Builder(this)
+                .setTitle("Sesi Selesai")
+                .setMessage("Level: " + kodeLevel() + " Nilai: " + nilai)
+                .setPositiveButton("Mau main lagi?", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialoginterface, int i) {
+                        mulaiSesiBaru();
+                    }
+                }).show();
+
+
+    }
+
     private void pilihLevel(int checkedId) {
         if (checkedId == R.id.radioEasy) {
             kamus = kamusEasy;
@@ -152,14 +191,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void letsPlay() {
+        if (soalke >= JUMLAH_SOAL){
+            selesaiSesi();
+            return;
+        }
+        soalke++;
         opsiJawaban = new ArrayList<>();
         soal = null;
         textHasil.setText("");
 
-
         ArrayList<String> acak = new ArrayList<>(kata);
         Collections.shuffle(acak);
-        soal= acak.get(0);
+        soal = acak.get(0);
 
         for (int i = 0; i < JUMLAH_OPSI; i++) {
             opsiJawaban.add(kamus.get(acak.get(i)));
@@ -207,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateSkor() {
-        textSkor.setText("Benar: " + skorBenar + "  Salah: " + skorSalah);
+        textSkor.setText("Soal no: " + (soalke+1) + " Benar: " + skorBenar + "  Salah: " + skorSalah);
     }
 
     private void mulaiTimer(long durasi) {
@@ -296,7 +339,7 @@ public class MainActivity extends AppCompatActivity {
         outState.putLong(KEY_SISA_MS, sisaMs);
         outState.putInt(KEY_LEVEL, radioGroupLevel.getCheckedRadioButtonId() );
         Log.d(TAG_LC, "onSaveInstanceState, skor=" + skorBenar + "/" + skorSalah
-        + radioGroupLevel.getCheckedRadioButtonId());
+                + radioGroupLevel.getCheckedRadioButtonId());
     }
 
 }
