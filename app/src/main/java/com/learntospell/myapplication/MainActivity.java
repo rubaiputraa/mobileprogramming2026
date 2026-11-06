@@ -1,6 +1,7 @@
 package com.learntospell.myapplication;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -158,7 +159,13 @@ public class MainActivity extends AppCompatActivity {
     private void selesaiSesi() {
         hentikanTimer();
         sudahDijawab = true;
-        tampilkanRingkasan();
+        Intent intent = new Intent(this, RingkasanHasil.class);
+        intent.putExtra("Jumlah Benar", skorBenar);
+        intent.putExtra("Jumlah Salah", skorSalah);
+        intent.putExtra("Jumlah Soal", JUMLAH_SOAL);
+        intent.putExtra("Level",kodeLevel());
+        startActivity(intent);
+//        tampilkanRingkasan();
     }
 
     private void tampilkanRingkasan () {
