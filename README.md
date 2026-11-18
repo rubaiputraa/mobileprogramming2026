@@ -12,6 +12,6 @@ Pemrograman Mobile 2026
 
 | Anggota | Peran | Fokus Fitur |
 | :--- | :--- | :--- |
-| **Rubai** | *Core Architecture & Exit Dialog* | Setup Navigation Component, BottomNavigationView, host MainActivity, dan DialogFragment konfirmasi keluar |
-| **Aang** | *Menu & Quiz Flow* | Pembuatan layar beranda MenuFragment dan migrasi logika permainan dari MainActivity lama ke QuizFragment |
-| **Jeremy** | *High Score & Word Detail* | Pembuatan SkorTerbaikFragment dengan penyimpanan permanen serta BottomSheetDialogFragment detail kata |
+| **Rubai** | Core Architecture & Exit Dialog| Setup Navigation Component, BottomNavigationView, host MainActivity, dan DialogFragment konfirmasi keluar |
+| **Aang** | Menu & Quiz Flow | Pembuatan layar beranda MenuFragment dan migrasi logika permainan dari MainActivity lama ke QuizFragment |
+| **Jeremy** | High Score & Word Detail| Pembuatan SkorTerbaikFragment dengan penyimpanan permanen serta BottomSheetDialogFragment detail kata |
