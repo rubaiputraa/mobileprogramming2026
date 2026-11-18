@@ -5,3 +5,4 @@
 | 17/11/2026 | Rubai | Sinkronisasi Gradle dan pastikan tidak ada konflik versi | Menu bar atas tersembunyi sehingga proses build dijalankan melalui ikon palu di toolbar, pintasan Ctrl + F9| Buat item menu bottom_nav_menu.xml|
 | 17/11/2026 | Rubai | Buat item menu bottom_nav_menu.xml | Direktori menu belum tersedia sehingga perlu dibuat terlebih dahulu|Buat kerangka awal navigation nav_graph.xml|
 | 17/11/2026 | Rubai | Buat kerangka awal navigation nav_graph.xml | Tidak ada |Ubah activity_main.xml menjadi wadah FragmentContainerView dan BottomNavigationView|
+| 18/11/2026 | Rubai | Mengubah activity_main.xml menjadi wadah FragmentContainerView dan BottomNavigationView | Saat dijalankan aplikasi terforce close |Menghuubungkan NavController ke BottomNavigationView di MainActivity.java|
