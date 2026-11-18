@@ -1,5 +1,7 @@
 package com.learntospell.myapplication;
-
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;

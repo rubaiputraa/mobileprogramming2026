@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="nav_menu">Menu</string>
+    <string name="nav_skor_terbaik">Skor Terbaik</string>
 </resources>
