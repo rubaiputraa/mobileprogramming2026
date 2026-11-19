@@ -1,6 +1,12 @@
 # Dynamic UI
 Pemrograman Mobile 2026
 
+###  Daftar Anoggota
+
+* **Anggota 1: Imam Rubai Putra 312410009**
+* **Anggota 2: Muhammad Anggoro Binadro 312410017** 
+* **Anggota 3: Jeremy Marcellino Limantoro 312410010**
+
 ###  Fitur Utama
 
 * **Navigasi Terpusat (Navigation Component)**
