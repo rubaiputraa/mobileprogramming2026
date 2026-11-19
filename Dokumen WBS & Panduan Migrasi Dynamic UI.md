@@ -3,6 +3,10 @@
 **Proyek:** Aplikasi Kuis Kosakata (`com.learntospell.myapplication`)  
 **Target Waktu:** 2 Minggu (14 Hari)  
 **Jumlah Tim:** 3 Orang
+**Anggota Tim:** 
+** *Anggota 1 : Imam Rubai Putra 312410009**
+** *Anggota 2 : Muhammad Anggoro Binadro 312410017**
+** *Anggota 3 : Jeremy Marcellino Limantoro 312410010**
 
 ---
 
