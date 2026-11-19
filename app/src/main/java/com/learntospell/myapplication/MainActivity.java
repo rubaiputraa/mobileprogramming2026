@@ -2,6 +2,7 @@ package com.learntospell.myapplication;
 
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -10,6 +11,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +24,22 @@ public class MainActivity extends AppCompatActivity {
                 .findFragmentById(R.id.nav_host_fragment);
 
         if (navHostFragment != null) {
-            NavController navController = navHostFragment.getNavController();
+            navController = navHostFragment.getNavController();
             NavigationUI.setupWithNavController(bottomNav, navController);
         }
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (navController != null && navController.getPreviousBackStackEntry() != null) {
+                    navController.navigateUp();
+                } else {
+                    new KonfirmasiKeluarDialogFragment().show(
+                            getSupportFragmentManager(),
+                            "KonfirmasiKeluarDialog"
+                    );
+                }
+            }
+        });
     }
 }
