@@ -1,7 +1,7 @@
 # Dokumen Perencanaan & WBS: Implementasi Dynamic UI
 
 **Proyek:** Aplikasi Kuis Kosakata  
-**Target Waktu:** 3 Minggu (21 Hari)  
+**Target Waktu:** 3 Minggu (+1 Minggu sebagai waktu cadangan)  
 **Jumlah Tim:** 3 Orang
 **Anggota Tim:**
 - **Anggota 1 :** Imam Rubai Putra 312410009
