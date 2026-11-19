@@ -1,6 +1,6 @@
 # Dokumen Perencanaan & WBS: Implementasi Dynamic UI
 
-**Proyek:** Aplikasi Kuis Kosakata (`com.learntospell.myapplication`)  
+**Proyek:** Aplikasi Kuis Kosakata  
 **Target Waktu:** 2 Minggu (14 Hari)  
 **Jumlah Tim:** 3 Orang
 **Anggota Tim:**
