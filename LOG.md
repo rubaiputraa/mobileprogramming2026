@@ -7,3 +7,4 @@
 | 17/11/2026 | Rubai | Buat kerangka awal navigation nav_graph.xml | Tidak ada |Ubah activity_main.xml menjadi wadah FragmentContainerView dan BottomNavigationView|
 | 18/11/2026 | Rubai | Mengubah activity_main.xml menjadi wadah FragmentContainerView dan BottomNavigationView | Saat dijalankan aplikasi terforce close |Buat kelas KonfirmasiKeluarDialogFragment.java dan pasang di OnBackPressedCallback|
 | 19/11/2026 | Rubai | Membuat kelas KonfirmasiKeluarDialogFragment.java dan pasang di OnBackPressedCallback | aplikasi masih terforce close |memindahkan desain layout menu lama ke fragment_menu.xml |
+| 19/11/2026 | Aang | memindahkan desain layout menu lama ke fragment_menu.xml | Referensi action di MenuFragment masih merah karena belum didaftarkan pada nav_graph.xml | membuat kelas MenuFragment dan memindahkan inisialisasi UI ke onViewCreated |
