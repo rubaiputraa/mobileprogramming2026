@@ -25,47 +25,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <RadioGroup
-        android:id="@+id/radioGroupLevel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/waktu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <RadioButton
-            android:id="@+id/radioEasy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Easy" />
-
-        <RadioButton
-            android:id="@+id/radioMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Medium" />
-
-        <RadioButton
-            android:id="@+id/radioDifficult"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Difficult" />
-
-    </RadioGroup>
-
     <TextView
         android:id="@+id/vocab"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:gravity="center"
         android:padding="16dp"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/radioGroupLevel"
+        app:layout_constraintTop_toBottomOf="@id/skor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
