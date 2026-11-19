@@ -6,4 +6,4 @@
 | 17/11/2026 | Rubai | Buat item menu bottom_nav_menu.xml | Direktori menu belum tersedia sehingga perlu dibuat terlebih dahulu|Buat kerangka awal navigation nav_graph.xml|
 | 17/11/2026 | Rubai | Buat kerangka awal navigation nav_graph.xml | Tidak ada |Ubah activity_main.xml menjadi wadah FragmentContainerView dan BottomNavigationView|
 | 18/11/2026 | Rubai | Mengubah activity_main.xml menjadi wadah FragmentContainerView dan BottomNavigationView | Saat dijalankan aplikasi terforce close |Buat kelas KonfirmasiKeluarDialogFragment.java dan pasang di OnBackPressedCallback|
-| 19/11/2026 | Rubai | Membuat kelas KonfirmasiKeluarDialogFragment.java dan pasang di OnBackPressedCallback | Saat dijalankan aplikasi terforce close |Menghuubungkan NavController ke BottomNavigationView di MainActivity.java|
+| 19/11/2026 | Rubai | Membuat kelas KonfirmasiKeluarDialogFragment.java dan pasang di OnBackPressedCallback | aplikasi masih terforce close |memindahkan desain layout menu lama ke fragment_menu.xml |
