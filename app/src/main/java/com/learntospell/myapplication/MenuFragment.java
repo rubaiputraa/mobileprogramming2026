@@ -38,7 +38,7 @@ public class MenuFragment extends Fragment {
             }
 
             Bundle bundle = new Bundle();
-            bundle.putString("LEVEL", level);
+            bundle.putString("KEY_LEVEL", level);
             Navigation.findNavController(v)
                     .navigate(R.id.action_menuFragment_to_quizFragment, bundle);
         });

@@ -28,10 +28,7 @@ public class RingkasanHasil extends AppCompatActivity {
 
         // Menampilkan data ke TextView
         TextView summaryText = findViewById(R.id.ringkasan);
-        summaryText.setText("Level: " + level +
-                "\nBenar: " + benar +
-                "\nSalah: " + salah +
-                "\nNilai: " + (benar * 100 / jumlah_soal));
+        summaryText.setText("Level: " + level +"\nBenar: " + benar + "\nSalah: " + salah + "\nNilai: " + (benar * 100 / jumlah_soal));
 
         Button btnMainLagi = findViewById(R.id.btnMainLagi);
         btnMainLagi.setOnClickListener(new View.OnClickListener() {

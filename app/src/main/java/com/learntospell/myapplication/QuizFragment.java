@@ -83,8 +83,8 @@ public class QuizFragment extends Fragment {
         readFromFile(R.raw.vocab_medium, kamusMedium, kataMedium);
         readFromFile(R.raw.vocab_difficult, kamusDifficult, kataDifficult);
 
-        if (getArguments() != null && getArguments().getString("LEVEL") != null) {
-            levelTerpilih = getArguments().getString("LEVEL");
+        if (getArguments() != null && getArguments().getString("KEY_LEVEL") != null) {
+            levelTerpilih = getArguments().getString("KEY_LEVEL");
         }
 
         pilihLevel(levelTerpilih);
@@ -143,7 +143,7 @@ public class QuizFragment extends Fragment {
         intent.putExtra("JUMLAH_BENAR", skorBenar);
         intent.putExtra("JUMLAH_SALAH", skorSalah);
         intent.putExtra("JUMLAH_SOAL", JUMLAH_SOAL);
-        intent.putExtra("LEVEL", levelTerpilih);
+        intent.putExtra("KEY_LEVEL", levelTerpilih);
         intent.putStringArrayListExtra("DAFTAR_SALAH", listsalah);
         startActivity(intent);
     }
