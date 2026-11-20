@@ -21,4 +21,10 @@
         android:label="Kuis"
         tools:layout="@layout/fragment_quiz" />
 
+    <fragment
+        android:id="@+id/skorTerbaikFragment"
+        android:name="com.learntospell.myapplication.SkorTerbaikFragment"
+        android:label="Skor Terbaik"
+        tools:layout="@layout/fragment_skor_terbaik" />
+
 </navigation>

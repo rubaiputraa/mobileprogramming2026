@@ -139,6 +139,28 @@ public class QuizFragment extends Fragment {
     private void selesaiSesi() {
         hentikanTimer();
         sudahDijawab = true;
+
+        int nilai = skorBenar * 100 / JUMLAH_SOAL;
+        android.content.SharedPreferences prefs = requireContext()
+                .getSharedPreferences("PREF_SKOR_TERBAIK", android.content.Context.MODE_PRIVATE);
+        String keySkor = "SKOR_" + levelTerpilih.toUpperCase();
+        int skorLama = prefs.getInt(keySkor, 0);
+
+        android.content.SharedPreferences.Editor editor = prefs.edit();
+        if (nilai > skorLama) {
+            editor.putInt(keySkor, nilai);
+        }
+
+        java.util.Set<String> riwayatKata = new java.util.HashSet<>(
+                prefs.getStringSet("RIWAYAT_KATA", new java.util.HashSet<>())
+        );
+        for (String item : listsalah) {
+            riwayatKata.add(item + "|" + levelTerpilih);
+        }
+        editor.putStringSet("RIWAYAT_KATA", riwayatKata);
+        editor.apply();
+
+
         Intent intent = new Intent(requireContext(), RingkasanHasil.class);
         intent.putExtra("JUMLAH_BENAR", skorBenar);
         intent.putExtra("JUMLAH_SALAH", skorSalah);
