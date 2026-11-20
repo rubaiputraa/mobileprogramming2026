@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="judulHasil" type="id" />
     <item name="action_menuFragment_to_quizFragment" type="id" />
 </resources>

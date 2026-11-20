@@ -21,7 +21,7 @@ public class RingkasanHasil extends AppCompatActivity {
         setContentView(R.layout.activity_ringkasan_hasil);
 
         Intent intent = getIntent();
-        String level = intent.getStringExtra("Level");
+        String level = getIntent().getStringExtra("KEY_LEVEL");
         int benar = intent.getIntExtra("JUMLAH_BENAR", 0);
         int salah = intent.getIntExtra("JUMLAH_SALAH", 0);
         int jumlah_soal = intent.getIntExtra("JUMLAH_SOAL", 1);

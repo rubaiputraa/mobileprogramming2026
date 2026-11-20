@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,7 +26,7 @@ public class QuizFragment extends Fragment {
 
     private HashMap<String, String> kamusEasy, kamusMedium, kamusDifficult, kamus;
     private ArrayList<String> kataEasy, kataMedium, kataDifficult, kata;
-    private int JUMLAH_OPSI = 5, JUMLAH_SOAL = 3, soalKe = 0;
+    private int JUMLAH_OPSI = 5, JUMLAH_SOAL = 5, soalKe = 0;
     private RecyclerView rvOpsi;
     private OpsiAdapter adapter;
     private TextView textHasil, textSkor, textWaktu, textSoal;
@@ -160,6 +161,7 @@ public class QuizFragment extends Fragment {
         editor.putStringSet("RIWAYAT_KATA", riwayatKata);
         editor.apply();
 
+        NavHostFragment.findNavController(this).popBackStack();
 
         Intent intent = new Intent(requireContext(), RingkasanHasil.class);
         intent.putExtra("JUMLAH_BENAR", skorBenar);
