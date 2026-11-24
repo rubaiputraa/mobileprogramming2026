@@ -1,3 +1,4 @@
+
 | Tanggal | Nama | Yang dikerjakan | Kendala | Rencana berikutnya |
 |---|---|---|---|---|
 | 15/11/2026 | Rubai | Membuat repository dan menginvite dosen serta anggota kelompok sebagai kolaborator, menentukan fitur, dan membagi tugas | Tidak ada| Mengerjakan task yang telah dibagi |
@@ -11,5 +12,11 @@
 | 19/11/2026 | Aang | membuat kelas MenuFragment dan memindahkan inisialisasi UI ke onViewCreated | Pemanggilan findViewByid dan konteks Activity wajib diubah ke view.findViewByid serta requireContext di onViewcreated agar tidak NullPointterException | Mengganti konteks this menjadi requireContext dan menyambungkan tombol menu |
 | 20/11/2026 | Aang | Mengganti konteks this menjadi requireContext dan menyambungkan tombol menu | Perbedaan nam kunc parameter antar kelas beresiko menyebabkan nilai level bernilai null jika tidak diseragamkan menjadi KEY_LEVEL | Mendaftarkan MenuFragment sebagai startDestination di nav_graph.xml |
 | 20/11/2026 | Aang | Mendaftarkan MenuFragment sebagai startDestination di nav_graph.xml | ID fragment di nav_graph.xml wajib sama persisi dengan ID item di bottom_nav_menu.xml agar tab aktif secara otomatis | Memindahkan desain layout skor lama ke fragment_skor_terbaik.xml |
-| 20/11/2026 | Jeremy | Menambahkan fitur pada menu Skor Terbaik untuk menampilkan skor tertinggi pada local (tidak tersimpan di database) |
-| 20/11/2026 | Semua Tim |Menggabungkan semua bagian dari tiap tim| Masih terdapat beberapa bug| Memperbaiki bug dan mengevaluasi |
+| 20/11/2026 | Jeremy | Membuat Layout fragment_skor_terbaik.xml dengan layout height 0dp | Menggunakan tinggil 0dp (constraint layout), sehingga daftar kosakata menumpuk | Membuat Fragment untuk bagian Skor terbaik dan memindah kode pembacaan data ke onViewCreated |
+| 20/11/2026 | Jeremy | Membuat kelas SkorTerbaikFragment.java dan memindahkan pembacaan data ke onViewCreated | Perlu adanya requireContext() pada onViewCreated agar tidak memicu
+NullPointerException saat perpindahan tab | Membuat layout bottom_sheet untuk menampilkan rincian kata |
+| 20/11/2026 | Jeremy | Membuat layout bottom_sheet_detail_kata.xml untuk menampikan rincian dari kata | Pewarnaan masih memakai token tema material 3, agar selaras dengan colors.xml tanpa adanya error referensi warna yang belum didefinisikan | Membuat kelas DetailKataBottomSheet menggunakan Bundle |
+| 20/11/2026 | Jeremy | Membuat kelas DetailKataBottomSheet.java menggunakan bundle (untuk menerima data) | Bundle wajib memakai newInstance agar aman saat rotasi layar | Menambahkan listener klik pada kata untuk menampilkan detail kata |
+| 20/11/2026b | Jeremy | Menambahkan Listener Klik untuk menampilkan DetailKataBottomSheet |  String riwayat perlu dipisah menjadi kata, arti, dan level agar parameter DetailKataBottomSheet terisi lengkap | Kedepannya akan menambahkan SkorTerbaikFragment di nav_graph sesuai ID di bottom_nav_menu.xml |
+| 20/11/2026 | Jeremy | Menambah SkorTerbaikFragment di navgraph dan menyesuaikan ID nya di bottom_nav_graph.xml | Atribut pada bottom_nav_menu dan nav_graph akan gagal jika terdapat typo | Menggabungkan kode bersama semua anggota tim |
+| 20/11/2026 | Semua Tim | Menggabungkan semua bagian dari tiap tim| Masih terdapat beberapa bug| Memperbaiki bug dan mengevaluasi |
