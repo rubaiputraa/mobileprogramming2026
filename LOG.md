@@ -19,4 +19,7 @@
 | 20/11/2026b | Jeremy | Menambahkan Listener Klik untuk menampilkan DetailKataBottomSheet |  String riwayat perlu dipisah menjadi kata, arti, dan level agar parameter DetailKataBottomSheet terisi lengkap | Kedepannya akan menambahkan SkorTerbaikFragment di nav_graph sesuai ID di bottom_nav_menu.xml |
 | 20/11/2026 | Jeremy | Menambah SkorTerbaikFragment di navgraph dan menyesuaikan ID nya di bottom_nav_graph.xml | Atribut pada bottom_nav_menu dan nav_graph akan gagal jika terdapat typo | Menggabungkan kode bersama semua anggota tim |
 | 20/11/2026 | Semua Tim | Menggabungkan semua bagian dari tiap tim| Masih terdapat beberapa bug| Memperbaiki bug dan mengevaluasi |
-| 26/11/2026 | Rubai | Mebahkan informasi versi v.1.1 apps dan menambahkan informasi credit dibuttom navigation|Tab credit belum bisa dibuka| Mebuat fragment credit dan class credit fragment |
+| 26/11/2026 | Rubai | Menambahkan informasi versi v.1.1 apps dan menambahkan informasi credit dibuttom navigation|Tab credit belum bisa dibuka| Mebuat fragment credit dan class credit fragment |
+| 26/11/2026 | Rubai | Membuat fragment credit dan class credit fragment|Tab credit masih belum bisa di klik/buka| Memperbaiki supaya tab credit bisa diklik |
+| 26/11/2026 | Rubai | Memperbaiki supaya tab credit bisa diklik dengan cara menambahkan syntax di navigation| sempat terjdi error| Menambahkan konfirmasi keluar didalam game untuk menghidari ketidaksengajaan oleh user |
+
