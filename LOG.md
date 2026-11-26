@@ -22,4 +22,5 @@
 | 26/11/2026 | Rubai | Menambahkan informasi versi v.1.1 apps dan menambahkan informasi credit dibuttom navigation|Tab credit belum bisa dibuka| Mebuat fragment credit dan class credit fragment |
 | 26/11/2026 | Rubai | Membuat fragment credit dan class credit fragment|Tab credit masih belum bisa di klik/buka| Memperbaiki supaya tab credit bisa diklik |
 | 26/11/2026 | Rubai | Memperbaiki supaya tab credit bisa diklik dengan cara menambahkan syntax di navigation| sempat terjdi error| Menambahkan konfirmasi keluar didalam game untuk menghidari ketidaksengajaan oleh user |
+| 26/11/2026 | Rubai | Menambahkan class konfirmasi keluar saat game berjalan untuk menghindari human error pemain| tidak ada | Menambahkan input nama pemain diawal |
 
