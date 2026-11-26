@@ -11,4 +11,9 @@
         android:icon="@android:drawable/btn_star_big_on"
         android:title="@string/nav_skor_terbaik" />
 
+    <item
+        android:id="@+id/creditFragment"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="@string/nav_credit" />
+
 </menu>
