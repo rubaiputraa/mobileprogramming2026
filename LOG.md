@@ -21,3 +21,5 @@
 | 20/11/2026 | Semua Tim | Menggabungkan semua bagian dari tiap tim| Masih terdapat beberapa bug| Memperbaiki bug dan mengevaluasi |
 | 26/11/2026 | Rubai | Menambahkan informasi versi v.1.1 apps dan menambahkan informasi credit dibuttom navigation|Tab credit belum bisa dibuka| Mebuat fragment credit dan class credit fragment |
 | 26/11/2026 | Rubai | Membuat fragment credit dan class credit fragment|Tab credit masih belum bisa di klik/buka| Memperbaiki supaya tab credit bisa diklik |
+| 26/11/2026 | Rubai | Memperbaiki supaya tab credit bisa diklik dengan cara menambahkan syntax di navigation| sempat terjdi error| Menambahkan konfirmasi keluar didalam game untuk menghidari ketidaksengajaan oleh user |
+
