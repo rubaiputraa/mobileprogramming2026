@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/menuFragment"
         android:name="com.learntospell.myapplication.MenuFragment"
-        android:label="Menu"
+        android:label="@string/nav_menu"
         tools:layout="@layout/fragment_menu">
         <action
             android:id="@+id/action_menuFragment_to_quizFragment"
@@ -18,13 +18,19 @@
     <fragment
         android:id="@+id/quizFragment"
         android:name="com.learntospell.myapplication.QuizFragment"
-        android:label="Kuis"
+        android:label="Quiz"
         tools:layout="@layout/fragment_quiz" />
 
     <fragment
         android:id="@+id/skorTerbaikFragment"
         android:name="com.learntospell.myapplication.SkorTerbaikFragment"
-        android:label="Skor Terbaik"
+        android:label="@string/nav_skor_terbaik"
         tools:layout="@layout/fragment_skor_terbaik" />
+
+    <fragment
+        android:id="@+id/creditFragment"
+        android:name="com.learntospell.myapplication.CreditFragment"
+        android:label="@string/nav_credit"
+        tools:layout="@layout/fragment_credit" />
 
 </navigation>

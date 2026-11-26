@@ -31,13 +31,12 @@ public class MainActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                if (navController != null && navController.getPreviousBackStackEntry() != null) {
-                    navController.navigateUp();
+                if (navController.getCurrentDestination() != null
+                        && navController.getCurrentDestination().getId() == R.id.quizFragment) {
+                    navController.popBackStack();
                 } else {
-                    new KonfirmasiKeluarDialogFragment().show(
-                            getSupportFragmentManager(),
-                            "KonfirmasiKeluarDialog"
-                    );
+                    new KonfirmasiKeluarDialogFragment()
+                            .show(getSupportFragmentManager(), "KonfirmasiKeluar");
                 }
             }
         });
