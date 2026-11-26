@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -65,7 +66,7 @@ public class QuizFragment extends Fragment {
 
         aturVisibilitasBottomNav(View.GONE);
 
-        // Menerima pilihan tombol dari dialog hasil
+        // Menerima pilihan tombol dari dialog hasil kuis
         getParentFragmentManager().setFragmentResultListener(
                 HasilKuisDialogFragment.REQUEST_KEY,
                 getViewLifecycleOwner(),
@@ -76,6 +77,40 @@ public class QuizFragment extends Fragment {
                     } else if (HasilKuisDialogFragment.AKSI_MENU.equals(aksi)) {
                         NavHostFragment.findNavController(QuizFragment.this)
                                 .popBackStack(R.id.menuFragment, false);
+                    }
+                }
+        );
+
+        // Menerima pilihan dari dialog konfirmasi keluar saat bermain
+        getParentFragmentManager().setFragmentResultListener(
+                KonfirmasiKeluarKuisDialogFragment.REQUEST_KEY,
+                getViewLifecycleOwner(),
+                (requestKey, result) -> {
+                    boolean keluar = result.getBoolean(KonfirmasiKeluarKuisDialogFragment.KEY_KELUAR, false);
+                    if (keluar) {
+                        hentikanTimer();
+                        NavHostFragment.findNavController(QuizFragment.this)
+                                .popBackStack(R.id.menuFragment, false);
+                    } else if (!sudahDijawab && sisaMs > 0 && timer == null) {
+                        mulaiTimer(sisaMs);
+                    }
+                }
+        );
+
+        // Menahan tombol Back saat kuis berlangsung agar muncul dialog konfirmasi
+        requireActivity().getOnBackPressedDispatcher().addCallback(
+                getViewLifecycleOwner(),
+                new OnBackPressedCallback(true) {
+                    @Override
+                    public void handleOnBackPressed() {
+                        if (hasilSudahDitampilkan) {
+                            NavHostFragment.findNavController(QuizFragment.this)
+                                    .popBackStack(R.id.menuFragment, false);
+                            return;
+                        }
+                        hentikanTimer();
+                        new KonfirmasiKeluarKuisDialogFragment()
+                                .show(getParentFragmentManager(), "KonfirmasiKeluarKuis");
                     }
                 }
         );
@@ -146,6 +181,7 @@ public class QuizFragment extends Fragment {
         }
 
         soalKe++;
+        sudahDijawab = false;
         opsiJawaban = new ArrayList<>();
         soal = null;
         textHasil.setText("");
@@ -218,6 +254,7 @@ public class QuizFragment extends Fragment {
     }
 
     private void periksaJawaban(int position) {
+        sudahDijawab = true;
         hentikanTimer();
         adapter.tandaiJawaban(position);
 
@@ -277,6 +314,7 @@ public class QuizFragment extends Fragment {
     }
 
     private void waktuHabis() {
+        sudahDijawab = true;
         skorSalah++;
         updateSkor();
         adapter.tandaiWaktuHabis();
