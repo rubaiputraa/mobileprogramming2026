@@ -24,3 +24,4 @@
 | 26/11/2026 | Rubai | Memperbaiki supaya tab credit bisa diklik dengan cara menambahkan syntax di navigation| sempat terjdi error| Menambahkan konfirmasi keluar didalam game untuk menghidari ketidaksengajaan oleh user |
 | 26/11/2026 | Rubai | Menambahkan class konfirmasi keluar saat game berjalan untuk menghindari human error pemain| tidak ada | Menambahkan input nama pemain diawal |
 | 27/11/2026 | Aang | Menambahkan input nama pemain diawal | Data KEY_NAMA sudah dikirim dari MenuFragment, namun belum dibaca dan disimpan di QuizFragment | Menghitung total waktu pengerjaan kuis dan menyimpan nama serta durasi rekor di QuizFragment.java |
+| 27/11/2026 | Aang | Menghitung total waktu pengerjaan kuis dan menyimpan nama serta durasi rekor di QuizFragment.java | Data nama dan waktu sudah tersimpan di SharedPreferences, namun belum ditampilkan pada SkorTerbaikFragment | Membuat fitur About / Tentang Permainan menggunakan AboutBottomSheet.java |
