@@ -105,6 +105,18 @@
         android:layout_marginTop="24dp"
         android:text="Mulai Kuis"
         app:layout_constraintTop_toBottomOf="@id/radioGroupLevel"
+        app:layout_constraintBottom_toTopOf="@id/btnTentangPermainan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnTentangPermainan"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Tentang Permainan"
+        app:layout_constraintTop_toBottomOf="@id/btnMulaiKuis"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

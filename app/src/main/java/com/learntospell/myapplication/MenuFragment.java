@@ -28,6 +28,7 @@ public class MenuFragment extends Fragment {
         EditText etNamaPemain = view.findViewById(R.id.etNamaPemain);
         RadioGroup radioGroupLevel = view.findViewById(R.id.radioGroupLevel);
         Button btnMulaiKuis = view.findViewById(R.id.btnMulaiKuis);
+        Button btnTentangPermainan = view.findViewById(R.id.btnTentangPermainan);
 
         btnMulaiKuis.setOnClickListener(v -> {
             String namaPemain = etNamaPemain.getText().toString().trim();
@@ -49,5 +50,9 @@ public class MenuFragment extends Fragment {
             Navigation.findNavController(v)
                     .navigate(R.id.action_menuFragment_to_quizFragment, bundle);
         });
+
+        btnTentangPermainan.setOnClickListener(v ->
+                new AboutBottomSheet().show(getParentFragmentManager(), "AboutBottomSheet")
+        );
     }
 }
