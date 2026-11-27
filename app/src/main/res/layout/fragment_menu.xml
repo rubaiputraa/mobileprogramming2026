@@ -11,11 +11,44 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/app_name"
+        android:text="Vocabulary Games"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvBadgeVersi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvBadgeVersi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:background="?attr/colorPrimaryContainer"
+        android:paddingStart="12dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="4dp"
+        android:text="v.1.1"
+        android:textColor="?attr/colorOnPrimaryContainer"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tvJudulMenu"
+        app:layout_constraintBottom_toTopOf="@id/etNamaPemain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/etNamaPemain"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="Masukkan Nama Pemain"
+        android:inputType="textPersonName|textCapWords"
+        android:maxLines="1"
+        android:padding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvBadgeVersi"
         app:layout_constraintBottom_toTopOf="@id/tvPilihLevel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -24,11 +57,11 @@
         android:id="@+id/tvPilihLevel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Pilih Tingkat Kesulitan"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/tvJudulMenu"
+        app:layout_constraintTop_toBottomOf="@id/etNamaPemain"
         app:layout_constraintBottom_toTopOf="@id/radioGroupLevel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -63,7 +96,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Difficult" />
-
     </RadioGroup>
 
     <Button
