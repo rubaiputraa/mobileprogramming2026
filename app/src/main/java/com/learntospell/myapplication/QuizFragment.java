@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,9 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -29,27 +26,23 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class QuizFragment extends Fragment {
-
     private HashMap<String, String> kamusEasy, kamusMedium, kamusDifficult, kamus;
     private ArrayList<String> kataEasy, kataMedium, kataDifficult, kata;
-
     private int JUMLAH_OPSI = 5, JUMLAH_SOAL = 5, soalKe = 0;
     private RecyclerView rvOpsi;
     private OpsiAdapter adapter;
     private TextView textHasil, textSkor, textWaktu, textSoal;
-
     private String soal;
     private String levelTerpilih = "Easy";
+    private String namaPemain = "Anonim";
     private ArrayList<String> opsiJawaban, listsalah;
-
     private int skorBenar = 0;
     private int skorSalah = 0;
-
     private static final String TAG_TIMER = "Timer";
     private static final long DURASI_SOAL = 15000;
     private CountDownTimer timer;
     private long sisaMs = DURASI_SOAL;
-
+    private long totalWaktuMs = 0;
     private boolean sudahDijawab = false;
     private boolean hasilSudahDitampilkan = false;
 
@@ -63,10 +56,8 @@ public class QuizFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         aturVisibilitasBottomNav(View.GONE);
 
-        // Menerima pilihan tombol dari dialog hasil kuis
         getParentFragmentManager().setFragmentResultListener(
                 HasilKuisDialogFragment.REQUEST_KEY,
                 getViewLifecycleOwner(),
@@ -81,7 +72,6 @@ public class QuizFragment extends Fragment {
                 }
         );
 
-        // Menerima pilihan dari dialog konfirmasi keluar saat bermain
         getParentFragmentManager().setFragmentResultListener(
                 KonfirmasiKeluarKuisDialogFragment.REQUEST_KEY,
                 getViewLifecycleOwner(),
@@ -97,7 +87,6 @@ public class QuizFragment extends Fragment {
                 }
         );
 
-        // Menahan tombol Back saat kuis berlangsung agar muncul dialog konfirmasi
         requireActivity().getOnBackPressedDispatcher().addCallback(
                 getViewLifecycleOwner(),
                 new OnBackPressedCallback(true) {
@@ -128,13 +117,11 @@ public class QuizFragment extends Fragment {
             Log.d("VocabQuiz", "Opsi diklik: posisi " + position);
         });
         rvOpsi.setAdapter(adapter);
-
         tombolBerikutnya.setOnClickListener(v -> letsPlay());
 
         kamus = new HashMap<>();
         kata = new ArrayList<>();
         listsalah = new ArrayList<>();
-
         kamusEasy = new HashMap<>();
         kataEasy = new ArrayList<>();
         kamusMedium = new HashMap<>();
@@ -146,17 +133,22 @@ public class QuizFragment extends Fragment {
         readFromFile(R.raw.vocab_medium, kamusMedium, kataMedium);
         readFromFile(R.raw.vocab_difficult, kamusDifficult, kataDifficult);
 
-        if (getArguments() != null && getArguments().getString("KEY_LEVEL") != null) {
-            levelTerpilih = getArguments().getString("KEY_LEVEL");
+        if (getArguments() != null) {
+            if (getArguments().getString("KEY_LEVEL") != null) {
+                levelTerpilih = getArguments().getString("KEY_LEVEL");
+            }
+            if (getArguments().getString("KEY_NAMA") != null) {
+                namaPemain = getArguments().getString("KEY_NAMA");
+            }
         }
 
         pilihLevel(levelTerpilih);
         soalKe = 0;
         skorBenar = 0;
         skorSalah = 0;
+        totalWaktuMs = 0;
         sudahDijawab = false;
         hasilSudahDitampilkan = false;
-
         updateSkor();
         letsPlay();
     }
@@ -175,11 +167,14 @@ public class QuizFragment extends Fragment {
     }
 
     private void letsPlay() {
+        if (soalKe > 0 && !sudahDijawab) {
+            hentikanTimer();
+            totalWaktuMs += (DURASI_SOAL - sisaMs);
+        }
         if (soalKe >= JUMLAH_SOAL) {
             selesaiSesi();
             return;
         }
-
         soalKe++;
         sudahDijawab = false;
         opsiJawaban = new ArrayList<>();
@@ -189,15 +184,12 @@ public class QuizFragment extends Fragment {
         ArrayList<String> acak = new ArrayList<>(kata);
         Collections.shuffle(acak);
         soal = acak.get(0);
-
         for (int i = 0; i < JUMLAH_OPSI; i++) {
             opsiJawaban.add(kamus.get(acak.get(i)));
         }
         Collections.shuffle(opsiJawaban);
-
         textSoal.setText(soal);
         adapter.setOpsi(opsiJawaban, opsiJawaban.indexOf(kamus.get(soal)));
-
         sisaMs = DURASI_SOAL;
         mulaiTimer(sisaMs);
     }
@@ -211,14 +203,25 @@ public class QuizFragment extends Fragment {
         sudahDijawab = true;
 
         int nilai = skorBenar * 100 / JUMLAH_SOAL;
+        int totalWaktuDetik = Math.max(1, (int) Math.round(totalWaktuMs / 1000.0));
+
         SharedPreferences prefs = requireContext()
                 .getSharedPreferences("PREF_SKOR_TERBAIK", Context.MODE_PRIVATE);
-        String keySkor = "SKOR_" + levelTerpilih.toUpperCase();
+        String levelUpper = levelTerpilih.toUpperCase();
+        String keySkor = "SKOR_" + levelUpper;
+        String keyNama = "NAMA_" + levelUpper;
+        String keyWaktu = "WAKTU_" + levelUpper;
+
         int skorLama = prefs.getInt(keySkor, 0);
+        int waktuLama = prefs.getInt(keyWaktu, Integer.MAX_VALUE);
 
         SharedPreferences.Editor editor = prefs.edit();
-        if (nilai > skorLama) {
+        boolean isRekorBaru = (nilai > skorLama)
+                || (nilai > 0 && nilai == skorLama && totalWaktuDetik < waktuLama);
+        if (isRekorBaru) {
             editor.putInt(keySkor, nilai);
+            editor.putString(keyNama, namaPemain);
+            editor.putInt(keyWaktu, totalWaktuDetik);
         }
 
         Set<String> riwayatKata = new HashSet<>(prefs.getStringSet("RIWAYAT_KATA", new HashSet<>()));
@@ -232,7 +235,9 @@ public class QuizFragment extends Fragment {
                 levelTerpilih,
                 skorBenar,
                 skorSalah,
-                JUMLAH_SOAL
+                JUMLAH_SOAL,
+                namaPemain,
+                totalWaktuDetik
         );
         dialog.show(getParentFragmentManager(), "HasilKuisDialog");
     }
@@ -242,11 +247,11 @@ public class QuizFragment extends Fragment {
         soalKe = 0;
         skorBenar = 0;
         skorSalah = 0;
+        totalWaktuMs = 0;
         listsalah.clear();
         sisaMs = DURASI_SOAL;
         sudahDijawab = false;
         hasilSudahDitampilkan = false;
-
         textHasil.setText("");
         textWaktu.setText("15 detik");
         updateSkor();
@@ -254,8 +259,12 @@ public class QuizFragment extends Fragment {
     }
 
     private void periksaJawaban(int position) {
+        if (sudahDijawab) {
+            return;
+        }
         sudahDijawab = true;
         hentikanTimer();
+        totalWaktuMs += (DURASI_SOAL - sisaMs);
         adapter.tandaiJawaban(position);
 
         String benar = kamus.get(soal);
@@ -274,7 +283,7 @@ public class QuizFragment extends Fragment {
     private void readFromFile(int resourceId, HashMap<String, String> kamus, ArrayList<String> kata) {
         Scanner scan = new Scanner(getResources().openRawResource(resourceId));
         while (scan.hasNextLine()) {
-            String[] t = scan.nextLine().split("\\t");
+            String[] t = scan.nextLine().split("\t");
             if (t.length >= 2) {
                 kamus.put(t[0].trim(), t[1].trim());
                 kata.add(t[0].trim());
@@ -284,7 +293,7 @@ public class QuizFragment extends Fragment {
     }
 
     private void updateSkor() {
-        textSkor.setText("soal no: " + (soalKe + 1) + " Benar: " + skorBenar + "  Salah: " + skorSalah);
+        textSkor.setText("soal no: " + (soalKe + 1) + " Benar: " + skorBenar + " Salah: " + skorSalah);
     }
 
     private void mulaiTimer(long durasi) {
@@ -314,7 +323,11 @@ public class QuizFragment extends Fragment {
     }
 
     private void waktuHabis() {
+        if (sudahDijawab) {
+            return;
+        }
         sudahDijawab = true;
+        totalWaktuMs += DURASI_SOAL;
         skorSalah++;
         updateSkor();
         adapter.tandaiWaktuHabis();
